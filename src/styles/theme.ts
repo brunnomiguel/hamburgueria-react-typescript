@@ -12,6 +12,9 @@ export const theme = extendTheme({
     primary: {
       600: "#27a760",
     },
+    primaryBlur: {
+      600: "#27AE601A"
+    },
     secondary: {
       600: "#EB5757",
     },

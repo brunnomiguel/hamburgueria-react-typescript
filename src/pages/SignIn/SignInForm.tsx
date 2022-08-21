@@ -1,4 +1,4 @@
-import { Text, Box, Grid, Button, Heading, VStack } from "@chakra-ui/react";
+import { Text, Grid, Button, Heading, VStack } from "@chakra-ui/react";
 
 import { useForm } from "react-hook-form";
 import { signInSchema } from "./signInSchema";
@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Input } from "../../components/Input";
+import { useAuth } from "../../contexts/Auth";
 
 interface SignInData {
   email: string;
@@ -16,6 +17,7 @@ interface SignInData {
 
 export const SignInForm = () => {
   const [loading, setLoading] = useState(false);
+  const { signIn } = useAuth();
 
   const history = useHistory();
 
@@ -29,7 +31,11 @@ export const SignInForm = () => {
   });
 
   const handleSignIn = (data: SignInData) => {
-    console.log(data);
+    setLoading(true);
+    signIn(data)
+      .then((_) => setLoading(false))
+      .catch((_) => setLoading(false));
+    reset();
   };
 
   return (

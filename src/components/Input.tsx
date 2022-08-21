@@ -5,6 +5,7 @@ import {
   useCallback,
   ForwardRefRenderFunction,
 } from "react";
+
 import {
   FormControl,
   FormErrorMessage,
@@ -29,10 +30,10 @@ type inputVariationOptions = {
 };
 
 const inputVariation: inputVariationOptions = {
-  error: "red.500",
-  default: "grey.200",
-  focus: "purple.800",
-  filled: "green.500",
+  error: "negative.600",
+  default: "grey.300",
+  focus: "grey.600",
+  filled: "success.600",
 };
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
@@ -41,7 +42,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 ) => {
   const [value, setValue] = useState("");
   const [variation, setVariation] = useState("default");
-  
+
   useEffect(() => {
     if (error) {
       return setVariation("error");
@@ -61,7 +62,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   }, [error, value]);
 
   return (
-    <FormControl>
+    <FormControl isInvalid={!!error}>
       {!!label && <FormLabel color="grey.400">{label}</FormLabel>}
 
       <InputGroup flexDirection="column">
@@ -71,16 +72,24 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           onChangeCapture={(event) => setValue(event.currentTarget.value)}
           color={inputVariation[variation]}
           borderColor={inputVariation[variation]}
+          border="2px solid"
           bg="white"
           variant="outline"
           size="lg"
           h="60px"
+          _hover={{ bg: "grey.50" }}
+          _placeholder={{ color: "grey.300" }}
+          _focus={{
+            bg: "grey.50",
+            border: "2px solid",
+            borderColor: "grey.600",
+          }}
           ref={ref}
           {...rest}
         />
 
         {Icon && (
-          <InputRightElement>
+          <InputRightElement color={inputVariation[variation]} mt="2.5">
             <Icon />
           </InputRightElement>
         )}

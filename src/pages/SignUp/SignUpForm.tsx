@@ -1,4 +1,12 @@
-import { Grid, Button, Heading, VStack, Flex, Link } from "@chakra-ui/react";
+import {
+  Grid,
+  Button,
+  Heading,
+  VStack,
+  Flex,
+  Link,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 import { useForm } from "react-hook-form";
 import { signUpSchema } from "./signUpSchema";
@@ -9,6 +17,8 @@ import { useHistory } from "react-router-dom";
 
 import { api } from "../../services/api";
 import { Input } from "../../components/Form/Input";
+import { ModalSuccess } from "../../components/Modal/ModalSuccess";
+import { ModalError } from "../../components/Modal/ModalError";
 
 interface SignUpData {
   name: string;
@@ -21,6 +31,18 @@ export const SignUpForm = () => {
   const [loading, setLoading] = useState(false);
 
   const history = useHistory();
+
+  const {
+    isOpen: isModalSuccessOpen,
+    onOpen: onModalSuccessOpen,
+    onClose: onModalSuccessClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isModalErrorOpen,
+    onOpen: onModalErrorOpen,
+    onClose: onModalErrorClose,
+  } = useDisclosure();
 
   const {
     register,
@@ -37,74 +59,89 @@ export const SignUpForm = () => {
       .post("/register", { name, email, password })
       .then((_) => {
         setLoading(false);
+        onModalSuccessOpen();
       })
       .catch((_) => {
         setLoading(false);
+        onModalErrorOpen();
       });
     reset();
   };
 
   return (
-    <Grid
-      as="form"
-      onSubmit={handleSubmit(handleSignIn)}
-      mt={["4", "4", "0"]}
-      w={["100%", "100%", "40%", "40%"]}
-      padding="30px 15px"
-      border="3px solid"
-      borderColor="grey.50"
-      borderRadius="md"
-      bg="white"
-      color="grey.600"
-    >
-      <Flex alignItems="center" justifyContent="space-between" mb="2">
-        <Heading size="md">Cadastro</Heading>
-        <Link onClick={() => history.push("/")} color="grey.400">
-          Retornar para o login
-        </Link>
-      </Flex>
-      <VStack mt="4" spacing="5">
-        <Input
-          placeholder="Digite o seu nome"
-          label="Nome"
-          error={errors.name}
-          {...register("name")}
-        />
-        <Input
-          placeholder="Digite o seu e-mail"
-          label="E-mail"
-          type="email"
-          error={errors.email}
-          {...register("email")}
-        />
-        <Input
-          placeholder="Digite a sua senha"
-          label="Senha"
-          type="password"
-          error={errors.password}
-          {...register("password")}
-        />
-        <Input
-          placeholder="Confirme a sua senha"
-          label="Confirmação de senha"
-          type="password"
-          error={errors.confirmPassword}
-          {...register("confirmPassword")}
-        />
-      </VStack>
-      <Button
-        isLoading={loading}
-        bg="grey.100"
-        color="grey.400"
-        w="100%"
-        h="60px"
-        mt="4"
-        borderRadius="6px"
-        type="submit"
-        _hover={{ bg: "grey.400", color: "grey.100" }}
+    <>
+      <ModalSuccess
+        isOpen={isModalSuccessOpen}
+        onClose={onModalSuccessClose}
+        onClick={() => history.push("/")}
+      />
+      <ModalError
+        isOpen={isModalErrorOpen}
+        onClose={onModalErrorClose}
+        error="Seu e-mail já está em uso"
+        secondaryText="Você já pode tentar novamente, <b> clicando </b> no botão acima ou aguarde alguns instantes..."
+      />
+      <Grid
+        as="form"
+        onSubmit={handleSubmit(handleSignIn)}
+        mt={["4", "4", "0"]}
+        w={["100%", "100%", "40%", "40%"]}
+        padding="30px 15px"
+        border="3px solid"
+        borderColor="grey.50"
+        borderRadius="md"
+        bg="white"
+        color="grey.600"
       >
-        Cadastre-se
-      </Button>
-    </Grid>
+        <Flex alignItems="center" justifyContent="space-between" mb="2">
+          <Heading size="md">Cadastro</Heading>
+          <Link onClick={() => history.push("/")} color="grey.400">
+            Retornar para o login
+          </Link>
+        </Flex>
+        <VStack mt="4" spacing="5">
+          <Input
+            placeholder="Digite o seu nome"
+            label="Nome"
+            error={errors.name}
+            {...register("name")}
+          />
+          <Input
+            placeholder="Digite o seu e-mail"
+            label="E-mail"
+            type="email"
+            error={errors.email}
+            {...register("email")}
+          />
+          <Input
+            placeholder="Digite a sua senha"
+            label="Senha"
+            type="password"
+            error={errors.password}
+            {...register("password")}
+          />
+          <Input
+            placeholder="Confirme a sua senha"
+            label="Confirmação de senha"
+            type="password"
+            error={errors.confirmPassword}
+            {...register("confirmPassword")}
+          />
+        </VStack>
+        <Button
+          isLoading={loading}
+          bg="grey.100"
+          color="grey.400"
+          w="100%"
+          h="60px"
+          mt="4"
+          borderRadius="6px"
+          type="submit"
+          _hover={{ bg: "grey.400", color: "grey.100" }}
+        >
+          Cadastre-se
+        </Button>
+      </Grid>
+    </>
   );
 };

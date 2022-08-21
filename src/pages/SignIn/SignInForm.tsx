@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { Input } from "../../components/Input";
+import { Input } from "../../components/Form/Input";
 import { useAuth } from "../../contexts/Auth";
 
 interface SignInData {
@@ -55,7 +55,7 @@ export const SignInForm = () => {
       <VStack mt="4" spacing="5">
         <Input
           placeholder="Digite o seu e-mail"
-          label="Login"
+          label="E-mail"
           type="email"
           error={errors.email}
           {...register("email")}

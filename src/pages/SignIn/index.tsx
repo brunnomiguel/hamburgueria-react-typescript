@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 
 import { SignInForm } from "./SignInForm";
-import { SignInInfo } from "./SignInInfo";
+import { FormInfo } from "../../components/Form/FormInfo";
 
 export const SignIn = () => {
   return (
@@ -19,7 +19,7 @@ export const SignIn = () => {
         alignItems="center"
       >
         <SignInForm />
-        <SignInInfo />
+        <FormInfo />
       </Flex>
     </Flex>
   );

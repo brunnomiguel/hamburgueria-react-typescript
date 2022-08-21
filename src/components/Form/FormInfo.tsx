@@ -1,8 +1,16 @@
-import { Center, Flex, Grid, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 
 import IconInfo from "../../assets/icon-login-info.svg";
 
-export const SignInInfo = () => {
+export const FormInfo = () => {
   return (
     <Grid
       w={["100%", "100%", "50%", "50%"]}
@@ -44,6 +52,20 @@ export const SignInInfo = () => {
           A vida é como um sanduíche, é preciso <br /> recheá-la com os
           <b> melhores</b> <br /> ingredientes.
         </Text>
+      </Flex>
+      <Flex mt="6" w="200px" flexWrap="wrap">
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(
+          (_, index) => (
+            <Box
+              key={index}
+              borderRadius="50%"
+              w="12px"
+              h="12px"
+              bg="grey.50"
+              m="10px"
+            />
+          )
+        )}
       </Flex>
     </Grid>
   );

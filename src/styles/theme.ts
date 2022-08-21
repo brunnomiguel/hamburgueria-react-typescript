@@ -5,7 +5,8 @@ export const theme = extendTheme({
     grey: {
       50: "#f5f5f5",
       100: "#e0e0e0",
-      300: "#828282",
+      300: "#999999",
+      400: "#828282",
       600: "#333333",
     },
     primary: {

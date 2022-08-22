@@ -1,3 +1,9 @@
-import { Heading } from "@chakra-ui/react";
+import { Header } from "../../components/Header";
 
-export const Dashboard = () => <Heading>Dashboard</Heading>;
+export const Dashboard = () => {
+  return (
+    <>
+      <Header />
+    </>
+  );
+};

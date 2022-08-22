@@ -116,7 +116,7 @@ export const SignInForm = () => {
             color="grey.300"
             h="60px"
             borderRadius="8px"
-            onClick={() => history.push("/signup")}
+            onClick={() => history.push("/signUp")}
             _hover={{
               bg: "grey.100",
             }}

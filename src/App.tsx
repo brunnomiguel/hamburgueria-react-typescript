@@ -1,11 +1,5 @@
-import { Heading } from "@chakra-ui/react";
-import { SignIn } from "./pages/SignIn";
-import { SignUp } from "./pages/SignUp";
+import { Routes } from "./routes";
 
 export const App = () => {
-  return (
-    <>
-      <SignIn />
-    </>
-  );
+  return <Routes />;
 };

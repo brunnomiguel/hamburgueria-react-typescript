@@ -14,6 +14,7 @@ import {
   InputProps as ChakraInputProps,
   InputRightElement,
   InputGroup,
+  Center,
 } from "@chakra-ui/react";
 
 import { FieldError } from "react-hook-form";
@@ -89,8 +90,22 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         />
 
         {Icon && (
-          <InputRightElement color={inputVariation[variation]} mt="2.5">
-            <Icon />
+          <InputRightElement
+            w="70px"
+            color={inputVariation[variation]}
+            mt="2.5"
+          >
+            <Center
+              as="button"
+              w="55px"
+              h="40px"
+              bg="primary.600"
+              fontSize="lg"
+              borderRadius="md"
+              outline="0"
+            >
+              <Icon color="white" />
+            </Center>
           </InputRightElement>
         )}
 

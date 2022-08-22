@@ -23,9 +23,9 @@ export const FormInfo = () => {
         as="h1"
         color="grey.600"
       >
-        Kenzie
+        Burguer
         <Text color="secondary.600" ml="2" fontSize="3xl">
-          Burguer
+          Kenzie
         </Text>
       </Heading>
       <Flex

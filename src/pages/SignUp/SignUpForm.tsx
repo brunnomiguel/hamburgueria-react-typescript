@@ -78,7 +78,7 @@ export const SignUpForm = () => {
       <ModalError
         isOpen={isModalErrorOpen}
         onClose={onModalErrorClose}
-        error="Seu e-mail já está em uso"
+        error="O e-mail que você informou já foi cadastrado"
         secondaryText="Você já pode tentar novamente, <b> clicando </b> no botão acima ou aguarde alguns instantes..."
       />
       <Grid

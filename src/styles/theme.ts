@@ -5,6 +5,7 @@ export const theme = extendTheme({
     grey: {
       50: "#f5f5f5",
       100: "#e0e0e0",
+      200: "#bdbdbd",
       300: "#999999",
       400: "#828282",
       600: "#333333",
@@ -13,7 +14,7 @@ export const theme = extendTheme({
       600: "#27a760",
     },
     primaryBlur: {
-      600: "#27AE601A"
+      600: "#27AE601A",
     },
     secondary: {
       600: "#EB5757",
